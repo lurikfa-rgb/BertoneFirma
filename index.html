@@ -363,6 +363,10 @@
       <label>Telefono</label>
       <input type="text" id="telefono" placeholder="es. +39 348 60 06 307" oninput="aggiorna()">
     </div>
+    <div class="field">
+      <label>Email aziendale</label>
+      <input type="email" id="email" placeholder="es. luca.facchetti@bertonedesign.it" oninput="aggiorna()">
+    </div>
   </div>
 
   <!-- PREVIEW -->
@@ -378,9 +382,10 @@
               <span class="sig-role" id="prev-ruolo">Ruolo</span>
             </td>
             <td class="sig-contact-area">
-              <span class="sig-phone" id="prev-telefono">+39 000 000 000</span>
+              <a id="prev-tel-link" href="tel:+39000000000" style="font-family:Arial,sans-serif;font-size:15px;font-weight:400;color:#111111;display:block;line-height:1.4;text-decoration:none;"><span id="prev-telefono">+39 000 000 000</span></a>
               <span class="sig-address">Via Ghirlandaio 5, 20900 Monza, Italy</span>
-              <span class="sig-website">bertonedesign.it</span>
+              <a id="prev-email-link" href="mailto:" style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;text-decoration:none;"><span id="prev-email">email@bertonedesign.it</span></a>
+              <a href="https://www.bertonedesign.it" target="_blank" style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;text-decoration:none;">bertonedesign.it</a>
             </td>
             <td class="sig-logo-area">
               <!-- Logo testuale come fallback universale per email -->
@@ -440,9 +445,10 @@
               <span id="full-ruolo" style="font-family:Arial,sans-serif;font-size:12px;font-weight:400;color:#666666;display:block;margin-top:3px;">Ruolo</span>
             </td>
             <td style="padding:0 28px;vertical-align:top;text-align:center;border-right:1px solid #dddddd;white-space:nowrap;">
-              <span id="full-telefono" style="font-family:Arial,sans-serif;font-size:15px;font-weight:400;color:#111111;display:block;line-height:1.4;">+39 000 000 000</span>
+              <a id="full-tel-link" href="tel:+39000000000" style="font-family:Arial,sans-serif;font-size:15px;font-weight:400;color:#111111;display:block;line-height:1.4;text-decoration:none;"><span id="full-telefono">+39 000 000 000</span></a>
               <span style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;line-height:1.5;">Via Ghirlandaio 5, 20900 Monza, Italy</span>
-              <span style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;">bertonedesign.it</span>
+              <a id="full-email-link" href="mailto:" style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;text-decoration:none;"><span id="full-email">email@bertonedesign.it</span></a>
+              <a href="https://www.bertonedesign.it" target="_blank" style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;text-decoration:none;">bertonedesign.it</a>
             </td>
             <td style="padding:0 0 0 28px;vertical-align:middle;white-space:nowrap;">
               <table cellpadding="0" cellspacing="0">
@@ -472,16 +478,25 @@
     const nome = document.getElementById('nome').value || 'Nome Cognome';
     const ruolo = document.getElementById('ruolo').value || 'Ruolo';
     const tel = document.getElementById('telefono').value || '+39 000 000 000';
+    const email = document.getElementById('email').value || 'email@bertonedesign.it';
 
     ['prev-nome','full-nome'].forEach(id => document.getElementById(id).textContent = nome);
     ['prev-ruolo','full-ruolo'].forEach(id => document.getElementById(id).textContent = ruolo);
     ['prev-telefono','full-telefono'].forEach(id => document.getElementById(id).textContent = tel);
+    ['prev-email','full-email'].forEach(id => document.getElementById(id).textContent = email);
+
+    // Aggiorna href dei link
+    const telClean = tel.replace(/\s/g, '');
+    ['prev-tel-link','full-tel-link'].forEach(id => document.getElementById(id).href = 'tel:' + telClean);
+    ['prev-email-link','full-email-link'].forEach(id => document.getElementById(id).href = 'mailto:' + email);
   }
 
   function getHTML() {
     const nome = document.getElementById('nome').value || 'Nome Cognome';
     const ruolo = document.getElementById('ruolo').value || 'Ruolo';
     const tel = document.getElementById('telefono').value || '+39 000 000 000';
+    const email = document.getElementById('email').value || 'email@bertonedesign.it';
+    const telClean = tel.replace(/\s/g, '');
 
     return `<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial,sans-serif;">
   <tr>
@@ -491,9 +506,10 @@
       <span style="font-family:Arial,sans-serif;font-size:12px;font-weight:400;color:#666666;display:block;margin-top:3px;">${ruolo}</span>
     </td>
     <td style="padding:0 28px;vertical-align:top;text-align:center;border-right:1px solid #dddddd;white-space:nowrap;">
-      <span style="font-family:Arial,sans-serif;font-size:15px;font-weight:400;color:#111111;display:block;line-height:1.4;">${tel}</span>
+      <a href="tel:${telClean}" style="font-family:Arial,sans-serif;font-size:15px;font-weight:400;color:#111111;display:block;line-height:1.4;text-decoration:none;">${tel}</a>
       <span style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;line-height:1.5;">Via Ghirlandaio 5, 20900 Monza, Italy</span>
-      <span style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;">bertonedesign.it</span>
+      <a href="mailto:${email}" style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;text-decoration:none;">${email}</a>
+      <a href="https://www.bertonedesign.it" target="_blank" style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;text-decoration:none;">bertonedesign.it</a>
     </td>
     <td style="padding:0 0 0 28px;vertical-align:middle;white-space:nowrap;">
       <table cellpadding="0" cellspacing="0"><tr>
