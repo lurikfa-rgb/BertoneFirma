@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bertone Design — Generatore Firma</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #111111;
+    --gray: #555555;
+    --light: #f5f5f3;
+    --border: #e0e0dc;
+    --red: #cc2222;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--light);
+    color: var(--black);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 24px 80px;
+  }
+
+  header {
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 52px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: var(--black);
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+  }
+
+  .header-title {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gray);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 860px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .panel {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 36px;
+  }
+
+  .panel-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 28px;
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+
+  input, select {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--light);
+    padding: 11px 14px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: var(--black);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  input:focus, select:focus {
+    border-color: var(--black);
+    background: var(--white);
+  }
+
+  input::placeholder {
+    color: #bbb;
+  }
+
+  .preview-panel {
+    grid-column: 1 / -1;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 36px;
+  }
+
+  .preview-panel .panel-title {
+    margin-bottom: 24px;
+  }
+
+  .preview-wrapper {
+    background: #f8f8f6;
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+  }
+
+  /* ---- THE SIGNATURE ---- */
+  .sig-table {
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+
+  .sig-flag {
+    width: 4px;
+    padding: 0;
+    background: linear-gradient(to bottom, #009246 33.3%, #ffffff 33.3%, #ffffff 66.6%, #ce2b37 66.6%);
+  }
+
+  .sig-name-area {
+    padding: 0 28px 0 16px;
+    vertical-align: top;
+    border-right: 1px solid #dddddd;
+    white-space: nowrap;
+  }
+
+  .sig-name {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.2;
+    display: block;
+  }
+
+  .sig-role {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #666666;
+    display: block;
+    margin-top: 3px;
+  }
+
+  .sig-contact-area {
+    padding: 0 28px;
+    vertical-align: top;
+    text-align: center;
+    border-right: 1px solid #dddddd;
+    white-space: nowrap;
+  }
+
+  .sig-phone {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #111111;
+    display: block;
+    line-height: 1.4;
+  }
+
+  .sig-address {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: #666666;
+    display: block;
+    line-height: 1.5;
+  }
+
+  .sig-website {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #111111;
+    display: block;
+  }
+
+  .sig-logo-area {
+    padding: 0 0 0 28px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .sig-logo-img {
+    height: 54px;
+    width: auto;
+    display: block;
+  }
+
+  /* ---- ACTIONS ---- */
+  .actions {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  button {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    padding: 14px 28px;
+    transition: all 0.18s;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .btn-primary:hover {
+    background: #333;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover {
+    background: var(--light);
+    border-color: var(--black);
+  }
+
+  .copy-msg {
+    font-size: 12px;
+    color: var(--gray);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .copy-msg.visible {
+    opacity: 1;
+  }
+
+  /* HTML output */
+  .html-panel {
+    grid-column: 1 / -1;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 36px;
+    display: none;
+  }
+
+  .html-panel.visible { display: block; }
+
+  .html-panel .panel-title { margin-bottom: 16px; }
+
+  textarea {
+    width: 100%;
+    height: 160px;
+    border: 1px solid var(--border);
+    background: #fafaf8;
+    padding: 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 11.5px;
+    color: #333;
+    resize: vertical;
+    outline: none;
+  }
+
+  textarea:focus {
+    border-color: var(--black);
+  }
+
+  .steps {
+    margin-top: 18px;
+    padding: 16px 18px;
+    background: var(--light);
+    border-left: 3px solid var(--black);
+    font-size: 12.5px;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  .steps strong { color: var(--black); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-logo">
+    <!-- Inline SVG del logo Bertone Design -->
+    <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="45" stroke="#111" stroke-width="5" fill="none"/>
+      <text x="50" y="63" text-anchor="middle" font-family="Arial" font-weight="700" font-size="38" fill="#111">B</text>
+    </svg>
+    <span class="logo-text">Bertone<br>Design</span>
+  </div>
+  <div class="header-divider"></div>
+  <span class="header-title">Generatore Firma Email</span>
+</header>
+
+<div class="container">
+
+  <!-- FORM -->
+  <div class="panel">
+    <div class="panel-title">Dati personali</div>
+
+    <div class="field">
+      <label>Nome e cognome</label>
+      <input type="text" id="nome" placeholder="es. Luca Facchetti" oninput="aggiorna()">
+    </div>
+    <div class="field">
+      <label>Ruolo / Dipartimento</label>
+      <input type="text" id="ruolo" placeholder="es. IT Department" oninput="aggiorna()">
+    </div>
+    <div class="field">
+      <label>Telefono</label>
+      <input type="text" id="telefono" placeholder="es. +39 348 60 06 307" oninput="aggiorna()">
+    </div>
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="panel" style="display:flex;flex-direction:column;justify-content:space-between;">
+    <div class="panel-title">Anteprima</div>
+    <div class="preview-wrapper">
+      <div id="firma-preview">
+        <table class="sig-table" cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="sig-flag" height="70">&nbsp;</td>
+            <td class="sig-name-area">
+              <span class="sig-name" id="prev-nome">Nome Cognome</span>
+              <span class="sig-role" id="prev-ruolo">Ruolo</span>
+            </td>
+            <td class="sig-contact-area">
+              <span class="sig-phone" id="prev-telefono">+39 000 000 000</span>
+              <span class="sig-address">Via Ghirlandaio 5, 20900 Monza, Italy</span>
+              <span class="sig-website">bertonedesign.it</span>
+            </td>
+            <td class="sig-logo-area">
+              <!-- Logo testuale come fallback universale per email -->
+              <table cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="vertical-align:middle;padding-right:8px;">
+                    <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="50" cy="50" r="44" stroke="#111111" stroke-width="6" fill="none"/>
+                      <text x="50" y="65" text-anchor="middle" font-family="Arial" font-weight="700" font-size="42" fill="#111111">B</text>
+                    </svg>
+                  </td>
+                  <td style="vertical-align:middle;">
+                    <span style="font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;line-height:1.3;color:#111111;display:block;text-transform:uppercase;">BERTONE<br>DESIGN</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+    <button class="btn-primary" onclick="generaHTML()">Genera firma HTML</button>
+    <button class="btn-secondary" onclick="copiaAnteprima()">Copia anteprima</button>
+    <span class="copy-msg" id="copy-msg">✓ Copiato negli appunti</span>
+  </div>
+
+  <!-- HTML OUTPUT -->
+  <div class="html-panel" id="html-panel">
+    <div class="panel-title">Codice HTML della firma</div>
+    <textarea id="html-output" readonly onclick="this.select()"></textarea>
+    <div style="margin-top:14px;display:flex;gap:10px;align-items:center;">
+      <button class="btn-primary" onclick="copiaHTML()">Copia HTML</button>
+      <span class="copy-msg" id="copy-html-msg">✓ Copiato</span>
+    </div>
+    <div class="steps">
+      <strong>Come inserire la firma:</strong><br>
+      <strong>Gmail</strong> → Impostazioni → Generali → Firma → incolla il codice in modalità HTML<br>
+      <strong>Outlook</strong> → File → Opzioni → Posta → Firme → Nuovo → incolla il codice<br>
+      <strong>Apple Mail</strong> → Preferenze → Firme → trascina il testo formattato
+    </div>
+  </div>
+
+  <!-- PREVIEW PANEL full width -->
+  <div class="preview-panel">
+    <div class="panel-title">Anteprima a dimensione reale</div>
+    <div class="preview-wrapper" style="justify-content:flex-start;">
+      <div id="firma-preview-full">
+        <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial,sans-serif;">
+          <tr>
+            <td style="width:4px;padding:0;background:linear-gradient(to bottom,#009246 33.3%,#ffffff 33.3%,#ffffff 66.6%,#ce2b37 66.6%);" height="70">&nbsp;</td>
+            <td style="padding:0 28px 0 16px;vertical-align:top;border-right:1px solid #dddddd;white-space:nowrap;">
+              <span id="full-nome" style="font-family:Arial,sans-serif;font-size:18px;font-weight:700;color:#111111;line-height:1.2;display:block;">Nome Cognome</span>
+              <span id="full-ruolo" style="font-family:Arial,sans-serif;font-size:12px;font-weight:400;color:#666666;display:block;margin-top:3px;">Ruolo</span>
+            </td>
+            <td style="padding:0 28px;vertical-align:top;text-align:center;border-right:1px solid #dddddd;white-space:nowrap;">
+              <span id="full-telefono" style="font-family:Arial,sans-serif;font-size:15px;font-weight:400;color:#111111;display:block;line-height:1.4;">+39 000 000 000</span>
+              <span style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;line-height:1.5;">Via Ghirlandaio 5, 20900 Monza, Italy</span>
+              <span style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;">bertonedesign.it</span>
+            </td>
+            <td style="padding:0 0 0 28px;vertical-align:middle;white-space:nowrap;">
+              <table cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="vertical-align:middle;padding-right:8px;">
+                    <svg width="52" height="52" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="50" cy="50" r="44" stroke="#111111" stroke-width="6" fill="none"/>
+                      <text x="50" y="65" text-anchor="middle" font-family="Arial" font-weight="700" font-size="42" fill="#111111">B</text>
+                    </svg>
+                  </td>
+                  <td style="vertical-align:middle;">
+                    <span style="font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;line-height:1.4;color:#111111;display:block;text-transform:uppercase;">BERTONE<br>DESIGN</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function aggiorna() {
+    const nome = document.getElementById('nome').value || 'Nome Cognome';
+    const ruolo = document.getElementById('ruolo').value || 'Ruolo';
+    const tel = document.getElementById('telefono').value || '+39 000 000 000';
+
+    ['prev-nome','full-nome'].forEach(id => document.getElementById(id).textContent = nome);
+    ['prev-ruolo','full-ruolo'].forEach(id => document.getElementById(id).textContent = ruolo);
+    ['prev-telefono','full-telefono'].forEach(id => document.getElementById(id).textContent = tel);
+  }
+
+  function getHTML() {
+    const nome = document.getElementById('nome').value || 'Nome Cognome';
+    const ruolo = document.getElementById('ruolo').value || 'Ruolo';
+    const tel = document.getElementById('telefono').value || '+39 000 000 000';
+
+    return `<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial,sans-serif;">
+  <tr>
+    <td style="width:4px;padding:0;background:linear-gradient(to bottom,#009246 33.3%,#ffffff 33.3%,#ffffff 66.6%,#ce2b37 66.6%);" height="70">&nbsp;</td>
+    <td style="padding:0 28px 0 16px;vertical-align:top;border-right:1px solid #dddddd;white-space:nowrap;">
+      <span style="font-family:Arial,sans-serif;font-size:18px;font-weight:700;color:#111111;line-height:1.2;display:block;">${nome}</span>
+      <span style="font-family:Arial,sans-serif;font-size:12px;font-weight:400;color:#666666;display:block;margin-top:3px;">${ruolo}</span>
+    </td>
+    <td style="padding:0 28px;vertical-align:top;text-align:center;border-right:1px solid #dddddd;white-space:nowrap;">
+      <span style="font-family:Arial,sans-serif;font-size:15px;font-weight:400;color:#111111;display:block;line-height:1.4;">${tel}</span>
+      <span style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;line-height:1.5;">Via Ghirlandaio 5, 20900 Monza, Italy</span>
+      <span style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;">bertonedesign.it</span>
+    </td>
+    <td style="padding:0 0 0 28px;vertical-align:middle;white-space:nowrap;">
+      <table cellpadding="0" cellspacing="0"><tr>
+        <td style="vertical-align:middle;padding-right:8px;">
+          <svg width="52" height="52" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="44" stroke="#111111" stroke-width="6" fill="none"/>
+            <text x="50" y="65" text-anchor="middle" font-family="Arial" font-weight="700" font-size="42" fill="#111111">B</text>
+          </svg>
+        </td>
+        <td style="vertical-align:middle;">
+          <span style="font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;line-height:1.4;color:#111111;display:block;text-transform:uppercase;">BERTONE<br>DESIGN</span>
+        </td>
+      </tr></table>
+    </td>
+  </tr>
+</table>`;
+  }
+
+  function generaHTML() {
+    document.getElementById('html-output').value = getHTML();
+    const panel = document.getElementById('html-panel');
+    panel.classList.add('visible');
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function copiaHTML() {
+    navigator.clipboard.writeText(document.getElementById('html-output').value).then(() => {
+      const msg = document.getElementById('copy-html-msg');
+      msg.classList.add('visible');
+      setTimeout(() => msg.classList.remove('visible'), 2500);
+    });
+  }
+
+  function copiaAnteprima() {
+    const el = document.getElementById('firma-preview-full');
+    const range = document.createRange();
+    range.selectNode(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    const msg = document.getElementById('copy-msg');
+    msg.classList.add('visible');
+    setTimeout(() => msg.classList.remove('visible'), 2500);
+  }
+</script>
+</body>
+</html>
