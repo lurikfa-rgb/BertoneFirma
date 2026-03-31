@@ -7,16 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --black: #111111;
     --gray: #555555;
     --light: #f5f5f3;
     --border: #e0e0dc;
-    --red: #cc2222;
     --white: #ffffff;
   }
-
   body {
     font-family: 'Barlow', sans-serif;
     background: var(--light);
@@ -27,10 +24,9 @@
     align-items: center;
     padding: 48px 24px 80px;
   }
-
   header {
     width: 100%;
-    max-width: 860px;
+    max-width: 1100px;
     display: flex;
     align-items: center;
     gap: 18px;
@@ -38,34 +34,8 @@
     padding-bottom: 28px;
     border-bottom: 1px solid var(--border);
   }
-
-  .header-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .logo-icon {
-    width: 42px;
-    height: 42px;
-  }
-
-  .logo-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    line-height: 1.2;
-    color: var(--black);
-  }
-
-  .header-divider {
-    width: 1px;
-    height: 36px;
-    background: var(--border);
-  }
-
+  .header-logo img { height: 38px; width: auto; }
+  .header-divider { width: 1px; height: 36px; background: var(--border); }
   .header-title {
     font-size: 13px;
     font-weight: 400;
@@ -73,21 +43,18 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-
   .container {
     width: 100%;
-    max-width: 860px;
+    max-width: 1100px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 420px 1fr;
     gap: 32px;
   }
-
   .panel {
     background: var(--white);
     border: 1px solid var(--border);
     padding: 36px;
   }
-
   .panel-title {
     font-size: 10px;
     font-weight: 700;
@@ -96,11 +63,7 @@
     color: var(--gray);
     margin-bottom: 28px;
   }
-
-  .field {
-    margin-bottom: 20px;
-  }
-
+  .field { margin-bottom: 20px; }
   label {
     display: block;
     font-size: 10px;
@@ -110,8 +73,7 @@
     color: var(--gray);
     margin-bottom: 8px;
   }
-
-  input, select {
+  input {
     width: 100%;
     border: 1px solid var(--border);
     background: var(--light);
@@ -121,129 +83,27 @@
     color: var(--black);
     outline: none;
     transition: border-color 0.2s;
-    -webkit-appearance: none;
   }
-
-  input:focus, select:focus {
-    border-color: var(--black);
-    background: var(--white);
-  }
-
-  input::placeholder {
-    color: #bbb;
-  }
-
+  input:focus { border-color: var(--black); background: var(--white); }
+  input::placeholder { color: #bbb; }
   .preview-panel {
     grid-column: 1 / -1;
     background: var(--white);
     border: 1px solid var(--border);
     padding: 36px;
   }
-
-  .preview-panel .panel-title {
-    margin-bottom: 24px;
-  }
-
   .preview-wrapper {
     background: #f8f8f6;
     border: 1px solid var(--border);
     padding: 32px 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 120px;
+    overflow-x: auto;
   }
-
-  /* ---- THE SIGNATURE ---- */
-  .sig-table {
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-  }
-
-  .sig-flag {
-    width: 4px;
-    padding: 0;
-    background: linear-gradient(to bottom, #009246 33.3%, #ffffff 33.3%, #ffffff 66.6%, #ce2b37 66.6%);
-  }
-
-  .sig-name-area {
-    padding: 0 28px 0 16px;
-    vertical-align: top;
-    border-right: 1px solid #dddddd;
-    white-space: nowrap;
-  }
-
-  .sig-name {
-    font-family: Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: #111111;
-    line-height: 1.2;
-    display: block;
-  }
-
-  .sig-role {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    color: #666666;
-    display: block;
-    margin-top: 3px;
-  }
-
-  .sig-contact-area {
-    padding: 0 28px;
-    vertical-align: top;
-    text-align: center;
-    border-right: 1px solid #dddddd;
-    white-space: nowrap;
-  }
-
-  .sig-phone {
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    color: #111111;
-    display: block;
-    line-height: 1.4;
-  }
-
-  .sig-address {
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    color: #666666;
-    display: block;
-    line-height: 1.5;
-  }
-
-  .sig-website {
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: #111111;
-    display: block;
-  }
-
-  .sig-logo-area {
-    padding: 0 0 0 28px;
-    vertical-align: middle;
-    white-space: nowrap;
-  }
-
-  .sig-logo-img {
-    height: 54px;
-    width: auto;
-    display: block;
-  }
-
-  /* ---- ACTIONS ---- */
   .actions {
     grid-column: 1 / -1;
     display: flex;
     gap: 12px;
     align-items: center;
   }
-
   button {
     font-family: 'Barlow', sans-serif;
     font-size: 11px;
@@ -255,39 +115,12 @@
     padding: 14px 28px;
     transition: all 0.18s;
   }
-
-  .btn-primary {
-    background: var(--black);
-    color: var(--white);
-  }
-
-  .btn-primary:hover {
-    background: #333;
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--black);
-    border: 1px solid var(--border);
-  }
-
-  .btn-secondary:hover {
-    background: var(--light);
-    border-color: var(--black);
-  }
-
-  .copy-msg {
-    font-size: 12px;
-    color: var(--gray);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .copy-msg.visible {
-    opacity: 1;
-  }
-
-  /* HTML output */
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-primary:hover { background: #333; }
+  .btn-secondary { background: transparent; color: var(--black); border: 1px solid var(--border); }
+  .btn-secondary:hover { background: var(--light); border-color: var(--black); }
+  .copy-msg { font-size: 12px; color: var(--gray); opacity: 0; transition: opacity 0.3s; }
+  .copy-msg.visible { opacity: 1; }
   .html-panel {
     grid-column: 1 / -1;
     background: var(--white);
@@ -295,11 +128,8 @@
     padding: 36px;
     display: none;
   }
-
   .html-panel.visible { display: block; }
-
   .html-panel .panel-title { margin-bottom: 16px; }
-
   textarea {
     width: 100%;
     height: 160px;
@@ -312,11 +142,7 @@
     resize: vertical;
     outline: none;
   }
-
-  textarea:focus {
-    border-color: var(--black);
-  }
-
+  textarea:focus { border-color: var(--black); }
   .steps {
     margin-top: 18px;
     padding: 16px 18px;
@@ -326,7 +152,6 @@
     color: var(--gray);
     line-height: 1.8;
   }
-
   .steps strong { color: var(--black); }
 </style>
 </head>
@@ -334,12 +159,7 @@
 
 <header>
   <div class="header-logo">
-    <!-- Inline SVG del logo Bertone Design -->
-    <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="45" stroke="#111" stroke-width="5" fill="none"/>
-      <text x="50" y="63" text-anchor="middle" font-family="Arial" font-weight="700" font-size="38" fill="#111">B</text>
-    </svg>
-    <span class="logo-text">Bertone<br>Design</span>
+    <img src="data:image/png;base64,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" alt="Bertone Design">
   </div>
   <div class="header-divider"></div>
   <span class="header-title">Generatore Firma Email</span>
@@ -350,7 +170,6 @@
   <!-- FORM -->
   <div class="panel">
     <div class="panel-title">Dati personali</div>
-
     <div class="field">
       <label>Nome e cognome</label>
       <input type="text" id="nome" placeholder="es. Luca Facchetti" oninput="aggiorna()">
@@ -369,43 +188,28 @@
     </div>
   </div>
 
-  <!-- PREVIEW -->
+  <!-- ANTEPRIMA PICCOLA -->
   <div class="panel" style="display:flex;flex-direction:column;justify-content:space-between;">
-    <div class="panel-title">Anteprima</div>
+    <div class="panel-title">Anteprima rapida</div>
     <div class="preview-wrapper">
-      <div id="firma-preview">
-        <table class="sig-table" cellpadding="0" cellspacing="0">
-          <tr>
-            <td class="sig-flag" height="70">&nbsp;</td>
-            <td class="sig-name-area">
-              <span class="sig-name" id="prev-nome">Nome Cognome</span>
-              <span class="sig-role" id="prev-ruolo">Ruolo</span>
-            </td>
-            <td class="sig-contact-area">
-              <a id="prev-tel-link" href="tel:+39000000000" style="font-family:Arial,sans-serif;font-size:15px;font-weight:400;color:#111111;display:block;line-height:1.4;text-decoration:none;"><span id="prev-telefono">+39 000 000 000</span></a>
-              <span class="sig-address">Via Ghirlandaio 5, 20900 Monza, Italy</span>
-              <a id="prev-email-link" href="mailto:" style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;text-decoration:none;"><span id="prev-email">email@bertonedesign.it</span></a>
-              <a href="https://www.bertonedesign.it" target="_blank" style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;text-decoration:none;">bertonedesign.it</a>
-            </td>
-            <td class="sig-logo-area">
-              <!-- Logo testuale come fallback universale per email -->
-              <table cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="vertical-align:middle;padding-right:8px;">
-                    <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="50" cy="50" r="44" stroke="#111111" stroke-width="6" fill="none"/>
-                      <text x="50" y="65" text-anchor="middle" font-family="Arial" font-weight="700" font-size="42" fill="#111111">B</text>
-                    </svg>
-                  </td>
-                  <td style="vertical-align:middle;">
-                    <span style="font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;line-height:1.3;color:#111111;display:block;text-transform:uppercase;">BERTONE<br>DESIGN</span>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </div>
+      <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial,sans-serif;">
+        <tr>
+          <td style="width:4px;padding:0;background:linear-gradient(to bottom,#009246 33.3%,#ffffff 33.3%,#ffffff 66.6%,#ce2b37 66.6%);" height="70">&nbsp;</td>
+          <td style="padding:0 20px 0 14px;vertical-align:top;border-right:1px solid #dddddd;white-space:nowrap;">
+            <span id="prev-nome" style="font-family:Arial,sans-serif;font-size:16px;font-weight:700;color:#111111;line-height:1.2;display:block;">Nome Cognome</span>
+            <span id="prev-ruolo" style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;margin-top:3px;">Ruolo</span>
+          </td>
+          <td style="padding:0 20px;vertical-align:top;text-align:center;border-right:1px solid #dddddd;white-space:nowrap;">
+            <a id="prev-tel-link" href="tel:" style="font-family:Arial,sans-serif;font-size:13px;color:#111111;display:block;line-height:1.4;text-decoration:none;"><span id="prev-telefono">+39 000 000 000</span></a>
+            <span style="font-family:Arial,sans-serif;font-size:10px;color:#666666;display:block;line-height:1.5;">Via Ghirlandaio 5, 20900 Monza, Italy</span>
+            <a id="prev-email-link" href="mailto:" style="font-family:Arial,sans-serif;font-size:10px;color:#666666;display:block;text-decoration:none;"><span id="prev-email">email@bertonedesign.it</span></a>
+            <a href="https://www.bertonedesign.it" target="_blank" style="font-family:Arial,sans-serif;font-size:10px;font-weight:700;color:#111111;display:block;text-decoration:none;">bertonedesign.it</a>
+          </td>
+          <td style="padding:0 0 0 20px;vertical-align:middle;">
+            <img src="data:image/png;base64,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" alt="Bertone Design" style="height:44px;width:auto;display:block;">
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 
@@ -432,61 +236,47 @@
     </div>
   </div>
 
-  <!-- PREVIEW PANEL full width -->
+  <!-- ANTEPRIMA REALE FULL WIDTH -->
   <div class="preview-panel">
     <div class="panel-title">Anteprima a dimensione reale</div>
-    <div class="preview-wrapper" style="justify-content:flex-start;">
-      <div id="firma-preview-full">
-        <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial,sans-serif;">
-          <tr>
-            <td style="width:4px;padding:0;background:linear-gradient(to bottom,#009246 33.3%,#ffffff 33.3%,#ffffff 66.6%,#ce2b37 66.6%);" height="70">&nbsp;</td>
-            <td style="padding:0 28px 0 16px;vertical-align:top;border-right:1px solid #dddddd;white-space:nowrap;">
-              <span id="full-nome" style="font-family:Arial,sans-serif;font-size:18px;font-weight:700;color:#111111;line-height:1.2;display:block;">Nome Cognome</span>
-              <span id="full-ruolo" style="font-family:Arial,sans-serif;font-size:12px;font-weight:400;color:#666666;display:block;margin-top:3px;">Ruolo</span>
-            </td>
-            <td style="padding:0 28px;vertical-align:top;text-align:center;border-right:1px solid #dddddd;white-space:nowrap;">
-              <a id="full-tel-link" href="tel:+39000000000" style="font-family:Arial,sans-serif;font-size:15px;font-weight:400;color:#111111;display:block;line-height:1.4;text-decoration:none;"><span id="full-telefono">+39 000 000 000</span></a>
-              <span style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;line-height:1.5;">Via Ghirlandaio 5, 20900 Monza, Italy</span>
-              <a id="full-email-link" href="mailto:" style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;text-decoration:none;"><span id="full-email">email@bertonedesign.it</span></a>
-              <a href="https://www.bertonedesign.it" target="_blank" style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;text-decoration:none;">bertonedesign.it</a>
-            </td>
-            <td style="padding:0 0 0 28px;vertical-align:middle;white-space:nowrap;">
-              <table cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="vertical-align:middle;padding-right:8px;">
-                    <svg width="52" height="52" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="50" cy="50" r="44" stroke="#111111" stroke-width="6" fill="none"/>
-                      <text x="50" y="65" text-anchor="middle" font-family="Arial" font-weight="700" font-size="42" fill="#111111">B</text>
-                    </svg>
-                  </td>
-                  <td style="vertical-align:middle;">
-                    <span style="font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;line-height:1.4;color:#111111;display:block;text-transform:uppercase;">BERTONE<br>DESIGN</span>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </div>
+    <div class="preview-wrapper">
+      <table id="firma-preview-full" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial,sans-serif;">
+        <tr>
+          <td style="width:4px;padding:0;background:linear-gradient(to bottom,#009246 33.3%,#ffffff 33.3%,#ffffff 66.6%,#ce2b37 66.6%);" height="70">&nbsp;</td>
+          <td style="padding:0 28px 0 16px;vertical-align:top;border-right:1px solid #dddddd;white-space:nowrap;">
+            <span id="full-nome" style="font-family:Arial,sans-serif;font-size:18px;font-weight:700;color:#111111;line-height:1.2;display:block;">Nome Cognome</span>
+            <span id="full-ruolo" style="font-family:Arial,sans-serif;font-size:12px;color:#666666;display:block;margin-top:3px;">Ruolo</span>
+          </td>
+          <td style="padding:0 28px;vertical-align:top;text-align:center;border-right:1px solid #dddddd;white-space:nowrap;">
+            <a id="full-tel-link" href="tel:" style="font-family:Arial,sans-serif;font-size:15px;color:#111111;display:block;line-height:1.4;text-decoration:none;"><span id="full-telefono">+39 000 000 000</span></a>
+            <span style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;line-height:1.5;">Via Ghirlandaio 5, 20900 Monza, Italy</span>
+            <a id="full-email-link" href="mailto:" style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;text-decoration:none;"><span id="full-email">email@bertonedesign.it</span></a>
+            <a href="https://www.bertonedesign.it" target="_blank" style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;text-decoration:none;">bertonedesign.it</a>
+          </td>
+          <td style="padding:0 0 0 28px;vertical-align:middle;">
+            <img src="data:image/png;base64,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" alt="Bertone Design" style="height:54px;width:auto;display:block;">
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 
 </div>
 
 <script>
+  const LOGO_URI = "data:image/png;base64,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";
+
   function aggiorna() {
     const nome = document.getElementById('nome').value || 'Nome Cognome';
     const ruolo = document.getElementById('ruolo').value || 'Ruolo';
     const tel = document.getElementById('telefono').value || '+39 000 000 000';
     const email = document.getElementById('email').value || 'email@bertonedesign.it';
+    const telClean = tel.replace(/\s/g, '');
 
     ['prev-nome','full-nome'].forEach(id => document.getElementById(id).textContent = nome);
     ['prev-ruolo','full-ruolo'].forEach(id => document.getElementById(id).textContent = ruolo);
     ['prev-telefono','full-telefono'].forEach(id => document.getElementById(id).textContent = tel);
     ['prev-email','full-email'].forEach(id => document.getElementById(id).textContent = email);
-
-    // Aggiorna href dei link
-    const telClean = tel.replace(/\s/g, '');
     ['prev-tel-link','full-tel-link'].forEach(id => document.getElementById(id).href = 'tel:' + telClean);
     ['prev-email-link','full-email-link'].forEach(id => document.getElementById(id).href = 'mailto:' + email);
   }
@@ -498,34 +288,23 @@
     const email = document.getElementById('email').value || 'email@bertonedesign.it';
     const telClean = tel.replace(/\s/g, '');
 
-    return `<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial,sans-serif;">
-  <tr>
-    <td style="width:4px;padding:0;background:linear-gradient(to bottom,#009246 33.3%,#ffffff 33.3%,#ffffff 66.6%,#ce2b37 66.6%);" height="70">&nbsp;</td>
-    <td style="padding:0 28px 0 16px;vertical-align:top;border-right:1px solid #dddddd;white-space:nowrap;">
-      <span style="font-family:Arial,sans-serif;font-size:18px;font-weight:700;color:#111111;line-height:1.2;display:block;">${nome}</span>
-      <span style="font-family:Arial,sans-serif;font-size:12px;font-weight:400;color:#666666;display:block;margin-top:3px;">${ruolo}</span>
-    </td>
-    <td style="padding:0 28px;vertical-align:top;text-align:center;border-right:1px solid #dddddd;white-space:nowrap;">
-      <a href="tel:${telClean}" style="font-family:Arial,sans-serif;font-size:15px;font-weight:400;color:#111111;display:block;line-height:1.4;text-decoration:none;">${tel}</a>
-      <span style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;line-height:1.5;">Via Ghirlandaio 5, 20900 Monza, Italy</span>
-      <a href="mailto:${email}" style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;text-decoration:none;">${email}</a>
-      <a href="https://www.bertonedesign.it" target="_blank" style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;text-decoration:none;">bertonedesign.it</a>
-    </td>
-    <td style="padding:0 0 0 28px;vertical-align:middle;white-space:nowrap;">
-      <table cellpadding="0" cellspacing="0"><tr>
-        <td style="vertical-align:middle;padding-right:8px;">
-          <svg width="52" height="52" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="44" stroke="#111111" stroke-width="6" fill="none"/>
-            <text x="50" y="65" text-anchor="middle" font-family="Arial" font-weight="700" font-size="42" fill="#111111">B</text>
-          </svg>
-        </td>
-        <td style="vertical-align:middle;">
-          <span style="font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;line-height:1.4;color:#111111;display:block;text-transform:uppercase;">BERTONE<br>DESIGN</span>
-        </td>
-      </tr></table>
-    </td>
-  </tr>
-</table>`;
+    return '<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:Arial,sans-serif;">'
+      + '<tr>'
+      + '<td style="width:4px;padding:0;background:linear-gradient(to bottom,#009246 33.3%,#ffffff 33.3%,#ffffff 66.6%,#ce2b37 66.6%);" height="70">&nbsp;</td>'
+      + '<td style="padding:0 28px 0 16px;vertical-align:top;border-right:1px solid #dddddd;white-space:nowrap;">'
+      + '<span style="font-family:Arial,sans-serif;font-size:18px;font-weight:700;color:#111111;line-height:1.2;display:block;">' + nome + '</span>'
+      + '<span style="font-family:Arial,sans-serif;font-size:12px;color:#666666;display:block;margin-top:3px;">' + ruolo + '</span>'
+      + '</td>'
+      + '<td style="padding:0 28px;vertical-align:top;text-align:center;border-right:1px solid #dddddd;white-space:nowrap;">'
+      + '<a href="tel:' + telClean + '" style="font-family:Arial,sans-serif;font-size:15px;color:#111111;display:block;line-height:1.4;text-decoration:none;">' + tel + '</a>'
+      + '<span style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;line-height:1.5;">Via Ghirlandaio 5, 20900 Monza, Italy</span>'
+      + '<a href="mailto:' + email + '" style="font-family:Arial,sans-serif;font-size:11px;color:#666666;display:block;text-decoration:none;">' + email + '</a>'
+      + '<a href="https://www.bertonedesign.it" target="_blank" style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:#111111;display:block;text-decoration:none;">bertonedesign.it</a>'
+      + '</td>'
+      + '<td style="padding:0 0 0 28px;vertical-align:middle;">'
+      + '<img src="' + LOGO_URI + '" alt="Bertone Design" style="height:54px;width:auto;display:block;">'
+      + '</td>'
+      + '</tr></table>';
   }
 
   function generaHTML() {
